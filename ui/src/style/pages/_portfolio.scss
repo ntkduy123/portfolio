@@ -1,0 +1,140 @@
+.portfolio-grid {
+  margin-left: -0.5em;
+  margin-right: -0.5em;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.portfolio-grid figure {
+  padding: 0.5em;
+  background: #fff;
+  position: relative;
+  flex: 0 0 25%;
+}
+
+.portfolio-grid img {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.portfolio-filters {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2em;
+  text-align: center;
+}
+
+.portfolio-filters li {
+  display: inline-block;
+}
+
+.portfolio-filters li a,
+.portfolio-filters li a:hover {
+  color: #888;
+  text-decoration: none;
+}
+
+.portfolio-filters li a:hover {
+  background-color: #eee;
+}
+
+.portfolio-filters li.active a,
+.portfolio-filters li.active a:hover {
+  background-color: #ffcd38;
+  color: #fff;
+}
+
+.portfolio-grid figure a div {
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  padding: 5px 20px;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  opacity: 0;
+}
+
+.portfolio-grid figure a:hover div {
+  visibility: visible;
+  opacity: 1;
+}
+
+.portfolio-grid figure {
+  float: left;
+  background: #fff;
+  position: relative;
+}
+
+.portfolio-grid figure a,
+.portfolio-rid figure a img {
+  display: block;
+  position: relative;
+}
+
+.portfolio-grid figure a {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.portfolio-grid figure a div {
+  position: absolute;
+  background: #4f565e;
+  background: rgba(79, 86, 94, 0.7);
+  width: 100%;
+  height: 100%;
+  color: #888;
+}
+
+.portfolio-grid figure a div h5 {
+  display: inline-block;
+  font-size: 1rem;
+  margin: 10px 0;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-grid figure a div h5:after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2px;
+  margin: 0 auto;
+  background-color: #ffcd38;
+}
+
+.portfolio-grid figure a div small {
+  color: #eee;
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-grid figure a div i {
+  color: #eee;
+  position: absolute;
+  bottom: 14px;
+  right: 20px;
+  margin: 0;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-grid figure a div span {
+  display: block;
+  padding: 10px 0;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1),
+    0 -10px 0 rgba(255, 255, 255, 0.3);
+  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1),
+    0 -10px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 -10px 0 rgba(255, 255, 255, 0.3);
+}

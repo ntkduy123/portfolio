@@ -1,0 +1,78 @@
+.home-page-block {
+  position: relative;
+  display: table;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+}
+
+.home-page-block-bg .mask {
+  position: absolute;
+  background: rgba(55, 55, 55, 0.7);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.home-page-block h2 {
+  color: #fff;
+  text-align: center;
+  font-size: 70px;
+  margin: 0;
+}
+.home-page-description {
+  color: #fff;
+  font-size: 21px;
+  font-weight: 300;
+  font-family: Oswald, Helvetica, sans-serif;
+  margin: 5px 0;
+  text-align: center;
+}
+.v-align {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.info-list {
+  list-style: none;
+  margin: 0;
+  padding: 15px 0 30px;
+}
+.info-list li {
+  padding: 3px 0;
+  font-size: 14px;
+}
+.info-list li .title {
+  display: inline-block;
+  font-family: Oswald, Helvetica, sans-serif;
+  margin-right: 15px;
+  color: #222;
+}
+.info-list li .title:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #ffcd38;
+}
+.info-list li .value {
+  font-family: pt sans, Helvetica, sans-serif;
+  min-width: 250px;
+}
+.home-page-block .info-list {
+  display: inline-block;
+  text-align: left;
+}
+.home-page-block .info-list li {
+  padding: 6px 0;
+}
+.home-page-block .info-list li,
+.home-page-block .info-list li span.title,
+.home-page-block .info-list li a {
+  color: #eee;
+  font-size: 16px;
+}
+
+.text-rotate {
+  display: block;
+}
