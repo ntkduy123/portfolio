@@ -1,13 +1,24 @@
 package main
 
 import (
+	"os"
+
+	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
-	"github.com/me/dev/api/controllers"
 )
 
 func main() {
 	router := gin.Default()
-	router.GET("/", controllers.HomeController)
 
-	router.Run(":8080")
+	router.Use(static.Serve("/", static.LocalFile("./web", true)))
+
+	router.NoRoute(func(c *gin.Context) {
+		c.File("./web/index.html")
+	})
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	router.Run(":" + port)
 }

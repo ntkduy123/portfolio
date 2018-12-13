@@ -36,3 +36,7 @@
 [[constraint]]
   name = "github.com/jinzhu/gorm"
   branch = "master"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/gin-contrib/static"
