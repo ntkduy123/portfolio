@@ -52,7 +52,7 @@ const Portfolio = () => (
         >
           <a
             className="ajax-page-load"
-            href="https://lmpixels.com/demo/sunshine-demo/sunshine-version-2/sunshine-html-template/portfolio-1.html"
+            href="#"
           >
             <img src={project1} />
             <div>
@@ -69,7 +69,7 @@ const Portfolio = () => (
           <a
             title="Praesent Dolor Ex"
             className="lightbox mfp-iframe"
-            href="https://player.vimeo.com/video/97102654?autoplay=1"
+            href="#"
           >
             <img src={project2} />
             <div>
@@ -86,7 +86,7 @@ const Portfolio = () => (
           <a
             title="Duis Eu Eros Viverra"
             className="lightbox"
-            href="./Sunshine - Responsive vCard Template_files/3.jpg"
+            href="#"
           >
             <img src={project3} />
             <div>
@@ -102,7 +102,7 @@ const Portfolio = () => (
         >
           <a
             className="ajax-page-load"
-            href="https://lmpixels.com/demo/sunshine-demo/sunshine-version-2/sunshine-html-template/portfolio-1.html"
+            href="#"
           >
             <img src={project4} />
             <div>
@@ -119,129 +119,13 @@ const Portfolio = () => (
           <a
             title="Aliquam Condimentum Magna Rhoncus"
             className="lightbox"
-            href={project5}
+            href="#"
           >
             <img src={project5} />
             <div>
               <h5 className="name">Project Name</h5>
               <small>Illustration</small>
               <i className="fa fa-image" />
-            </div>
-          </a>
-        </figure>
-        <figure
-          className="item shuffle-item filtered"
-          data-groups='["all", "media"]'
-        >
-          <a
-            className="ajax-page-load"
-            href="https://lmpixels.com/demo/sunshine-demo/sunshine-version-2/sunshine-html-template/portfolio-1.html"
-          >
-            <img src={project6} />
-            <div>
-              <h5 className="name">Project Name</h5>
-              <small>Media</small>
-              <i className="fa fa-file-text-o" />
-            </div>
-          </a>
-        </figure>
-        <figure
-          className="item shuffle-item filtered"
-          data-groups='["all", "video"]'
-        >
-          <a
-            title="Nulla Facilisi"
-            className="lightbox mfp-iframe"
-            href="https://player.vimeo.com/video/97102654?autoplay=1"
-          >
-            <img src={project7} />
-            <div>
-              <h5 className="name">Project Name</h5>
-              <small>Video</small>
-              <i className="fa fa-video-camera" />
-            </div>
-          </a>
-        </figure>
-        <figure
-          className="item shuffle-item filtered"
-          data-groups='["all",  "media"]'
-        >
-          <a
-            className="ajax-page-load"
-            href="https://lmpixels.com/demo/sunshine-demo/sunshine-version-2/sunshine-html-template/portfolio-1.html"
-          >
-            <img src={project8} />
-            <div>
-              <h5 className="name">Project Name</h5>
-              <small>Media</small>
-              <i className="fa fa-file-text-o" />
-            </div>
-          </a>
-        </figure>
-        <figure
-          className="item shuffle-item filtered"
-          data-groups='["all","illustration"]'
-        >
-          <a
-            title="Mauris Neque Dolor"
-            className="lightbox"
-            href="./Sunshine - Responsive vCard Template_files/9.jpg"
-          >
-            <img src={project9} />
-            <div>
-              <h5 className="name">Project Name</h5>
-              <small>Illustration</small>
-              <i className="fa fa-image" />
-            </div>
-          </a>
-        </figure>
-        <figure
-          className="item shuffle-item filtered"
-          data-groups='["all", "video"]'
-        >
-          <a
-            title="Donec Lectus Arcu"
-            className="lightbox mfp-iframe"
-            href="https://player.vimeo.com/video/97102654?autoplay=1"
-          >
-            <img src={project10} />
-            <div>
-              <h5 className="name">Project Name</h5>
-              <small>Video</small>
-              <i className="fa fa-video-camera" />
-            </div>
-          </a>
-        </figure>
-        <figure
-          className="item shuffle-item filtered"
-          data-groups='["all","illustration"]'
-        >
-          <a
-            title="Duis Eu Eros Viverra"
-            className="lightbox"
-            href="./Sunshine - Responsive vCard Template_files/11.jpg"
-          >
-            <img src={project11} />
-            <div>
-              <h5 className="name">Project Name</h5>
-              <small>Illustration</small>
-              <i className="fa fa-image" />
-            </div>
-          </a>
-        </figure>
-        <figure
-          className="item shuffle-item filtered"
-          data-groups='["all","media"]'
-        >
-          <a
-            className="ajax-page-load"
-            href="https://lmpixels.com/demo/sunshine-demo/sunshine-version-2/sunshine-html-template/portfolio-1.html"
-          >
-            <img src={project12} />
-            <div>
-              <h5 className="name">Project Name</h5>
-              <small>Media</small>
-              <i className="fa fa-file-text-o" />
             </div>
           </a>
         </figure>

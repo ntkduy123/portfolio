@@ -123,7 +123,7 @@
   -ms-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-.blog-card .media-block a .mask:after {
+.blog-card .media-block a .mask i {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -132,7 +132,7 @@
   line-height: 66px;
   font-size: 66px;
   text-align: center;
-  content: "\2194";
+  opacity: 0.8;
   color: #fff;
 }
 .blog-card .media-block a:hover .mask {

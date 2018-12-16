@@ -1,10 +1,13 @@
 import {
   HOME_PAGE,
+  RESUME_PAGE,
   BLOG_PAGE,
+  BLOG_POST,
   PORTFOLIO_PAGE
 } from '../constants/navigation';
 
 import Home from '../components/Home';
+import Resume from '../components/Resume';
 import Blog from '../components/Blog';
 import Portfolio from '../components/Portfolio';
 
@@ -14,6 +17,12 @@ const routes = [
     path: HOME_PAGE,
     component: Home,
     caption: 'Home'
+  },
+  {
+    state: RESUME_PAGE,
+    path: RESUME_PAGE,
+    component: Resume,
+    caption: 'Resume'
   },
   {
     state: BLOG_PAGE,

@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 
-import { Routes } from '../../routing';
+import { Routes } from "../../routing";
 
-import Header from '../Header';
-import MobileHeader from '../MobileHeader';
+import Header from "../Header";
+import MobileHeader from "../MobileHeader";
 
 class Main extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       headerOpen: false
-    }
+    };
     this.onRouteChange(props);
   }
 
@@ -24,13 +24,13 @@ class Main extends Component {
 
   onRouteChange = ({ location: { pathname: routeName } }) => {
     this.props.changeRoute(routeName);
-  }
+  };
 
   toggleHeader = () => {
     this.setState(prevState => ({
       headerOpen: !prevState.headerOpen
     }));
-  }
+  };
 
   render() {
     return (
@@ -41,7 +41,10 @@ class Main extends Component {
             <div className="dot2" />
           </div>
         </div>
-        <Header routeName={this.props.routeName} headerOpen={this.state.headerOpen} />
+        <Header
+          routeName={this.props.routeName}
+          headerOpen={this.state.headerOpen}
+        />
         <MobileHeader toggleHeader={this.toggleHeader} />
         <div className="site-main" id="main">
           <div className="pt-wrapper">

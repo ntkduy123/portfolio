@@ -1,0 +1,83 @@
+.timeline {
+  position: relative;
+  border-left: 1px solid #f4f9ed;
+  padding-top: 6px;
+  padding-bottom: 10px;
+}
+.timeline-event {
+  position: relative;
+  padding-left: 25px;
+  padding-bottom: 15px;
+}
+.timeline-event:last-child {
+  padding-bottom: 0;
+}
+.timeline-event > * {
+  display: block;
+}
+.event-date {
+  display: inline-block;
+  position: relative;
+  color: #fff;
+  font-weight: 300;
+  line-height: 1.1em;
+  margin: 0 0 3px;
+  background-color: #9bd952;
+  padding: 5px 8px 5px 30px;
+  margin-left: -30px;
+}
+.event-date:after {
+  display: block;
+  width: 5px;
+  height: 0;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  content: "";
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid #8cc44b;
+}
+.event-name {
+  margin: 10px 0 0;
+}
+.event-description {
+  color: #a5a5a5;
+  margin: 0 0 4px;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.45em;
+}
+.download-cv-block {
+  margin: 0 0 20px;
+}
+.skills-info {
+  margin-bottom: 30px;
+}
+.skills-info h4 {
+  font-size: 0.875em;
+  line-height: 1.1em;
+  position: relative;
+  margin: 0 0 5px;
+}
+.skill-container {
+  background-color: transparent;
+  border: 2px solid #ffcd38;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 14px;
+  margin-bottom: 12px;
+  width: 100%;
+}
+.skill-percentage {
+  background-color: #ffcd38;
+  border: 2px solid #fff;
+  -moz-border-radius: 9px;
+  -webkit-border-radius: 9px;
+  border-radius: 9px;
+  height: 10px;
+  padding: 0;
+}
