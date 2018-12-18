@@ -81,3 +81,38 @@
   height: 10px;
   padding: 0;
 }
+
+.pt-page .skill-percentage {
+  -webkit-transition: all 2.5s ease-in-out;
+  -moz-transition: all 2.5s ease-in-out;
+  -o-transition: all 2.5s ease-in-out;
+  -ms-transition: all 2.5s ease-in-out;
+  transition: all 2.5s ease-in-out;
+}
+.js .pt-page:not(.pt-page-current) .skill-percentage {
+  width: 0;
+}
+.skill-percentage.skill-1 {
+  width: 88%;
+}
+.skill-percentage.skill-2 {
+  width: 75%;
+}
+.skill-percentage.skill-3 {
+  width: 60%;
+}
+.skill-percentage.skill-4 {
+  width: 95%;
+}
+.skill-percentage.skill-5 {
+  width: 85%;
+}
+.skill-percentage.skill-6 {
+  width: 72%;
+}
+.skill-percentage.skill-7 {
+  width: 60%;
+}
+.skill-percentage.skill-8 {
+  width: 77%;
+}

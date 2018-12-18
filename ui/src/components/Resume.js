@@ -88,23 +88,6 @@ const Resume = () => (
       </div>
       <div className="col-sm-6 col-md-4 subpage-block">
         <div className="block-title">
-          <h3>Design Skills</h3>
-        </div>
-        <div className="skills-info">
-          <h4>Web Design</h4>
-          <div className="skill-container">
-            <div className="skill-percentage skill-1" />
-          </div>
-          <h4>Graphic Design</h4>
-          <div className="skill-container">
-            <div className="skill-percentage skill-2" />
-          </div>
-          <h4>Print Design</h4>
-          <div className="skill-container">
-            <div className="skill-percentage skill-3" />
-          </div>
-        </div>
-        <div className="block-title">
           <h3>Coding Skills</h3>
         </div>
         <div className="skills-info">
@@ -116,17 +99,17 @@ const Resume = () => (
           <div className="skill-container">
             <div className="skill-percentage skill-5" />
           </div>
-          <h4>jQuery</h4>
+          <h4>Javascript</h4>
           <div className="skill-container">
             <div className="skill-percentage skill-6" />
           </div>
-          <h4>Wordpress</h4>
+          <h4>Java</h4>
+          <div className="skill-container">
+            <div className="skill-percentage skill-6" />
+          </div>
+          <h4>Python</h4>
           <div className="skill-container">
             <div className="skill-percentage skill-7" />
-          </div>
-          <h4>PHP</h4>
-          <div className="skill-container">
-            <div className="skill-percentage skill-8" />
           </div>
         </div>
       </div>

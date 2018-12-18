@@ -33,7 +33,7 @@ const Home = () => (
               <span className="value">411/51 Le Dai Hanh Street, TPHCM</span>
             </li>
             <li>
-              <span className="title">e-mail</span>
+              <span className="title">E-mail</span>
               <span className="value">
                 <a href="mailto:email@example.com">ntkduy123@gmail.com</a>
               </span>

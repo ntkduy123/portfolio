@@ -3,13 +3,15 @@ import {
   RESUME_PAGE,
   BLOG_PAGE,
   BLOG_POST,
-  PORTFOLIO_PAGE
+  PORTFOLIO_PAGE,
+  NEW_POST
 } from '../constants/navigation';
 
 import Home from '../components/Home';
 import Resume from '../components/Resume';
 import Blog from '../components/Blog';
 import Portfolio from '../components/Portfolio';
+import NewPost from '../components/NewPost';
 
 const routes = [
   {
@@ -35,7 +37,13 @@ const routes = [
     path: PORTFOLIO_PAGE,
     component: Portfolio,
     caption: 'Portfolio'
-  }
+  },
+  {
+    state: NEW_POST,
+    path: NEW_POST,
+    component: NewPost,
+    caption: 'New post'
+  },
 ];
 
 export default routes;
