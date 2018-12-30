@@ -1,26 +1,10 @@
-# Binaries for programs and plugins
-
-*.exe
-
-*.exe~
-
-*.dll
-
-*.so
-
-*.dylib
-
-
-
-# Test binary, build with `go test -c`
-
-*.test
-
-
-
-# Output of the go coverage tool, specifically when used with LiteIDE
-
-*.out
-
-# dependencies
-/vendor
+.idea/
+projectName.iml
+/*.classpath
+/.classpath
+/.springBeans
+*.DS_Store
+*.iml
+/build
+/local.properties
+target/

@@ -1,0 +1,9 @@
+--INSERT INTO post_category (name, description) VALUES('System', 'System Design');
+--INSERT INTO post_category (name, description) VALUES('OOP', 'Object Oriented Design');
+--INSERT INTO post_category (name, description) VALUES('OS', 'Operating System');
+--INSERT INTO post_category (name, description) VALUES('Algorithms', 'Algorithms');
+--INSERT INTO post_category (name, description) VALUES('Database', 'Database');
+--
+--INSERT INTO post_status (name, description) VALUES('Active', 'Active');
+--INSERT INTO post_status (name, description) VALUES('Inactive', 'Inactive');
+--INSERT INTO post_status (name, description) VALUES('Pending', 'Pending');

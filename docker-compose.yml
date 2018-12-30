@@ -1,0 +1,45 @@
+version: '3'
+services:
+  nginx:
+    image: 'nginx:1.13'
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    
+  mysql:
+    image: 'mysql/mysql-server:latest'
+    environment:
+      - MYSQL_DATABASE=dev
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_ROOT_HOST=mysql
+      - MYSQL_USER=ntkduy
+      - MYSQL_PASSWORD=123456
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    restart: always
+    
+  app:
+    restart: always
+    environment:
+      - MYSQL_DATABASE=dev
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_USER=ntkduy
+      - MYSQL_PASSWORD=123456
+      - SERVER_PORT=8080
+    build: ./api
+    working_dir: /app
+    volumes:
+      - ./api:/app
+      - ~/.m2:/root/.m2
+    expose:
+      - '8080'
+    command: mvn clean spring-boot:run
+    depends_on:
+      - nginx
+      - mysql
