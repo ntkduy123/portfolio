@@ -1,15 +1,29 @@
 spring:
+  profiles: development
   datasource:
     url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?currentSchema=${MYSQL_DATABASE}&allowPublicKeyRetrieval=true&useSSL=false
     username: ${MYSQL_USER}
     password: ${MYSQL_PASSWORD}
     driver-class-name: com.mysql.jdbc.Driver
-  jpa.hibernate.ddl-auto: create
-  jpa.properties.hibernate.default_schema: ${MYSQL_DATABASE}
+  jpa.hibernate.ddl-auto: update
 
-liquibase.default-schema: dev
+liquibase.default-schema: ${MYSQL_DATABASE}
 spring.thymeleaf.cache: false
 spring.resources.cache-period: 0
 spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
-server.port: ${SERVER_PORT}
-#spring.autoconfigure.exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+server.port: ${PORT}
+
+---
+
+spring:
+  profiles: production
+  datasource:
+    url: ${CLEARDB_DATABASE_URL}
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa.hibernate.ddl-auto: update
+
+liquibase.default-schema: ${MYSQL_DATABASE}
+spring.thymeleaf.cache: false
+spring.resources.cache-period: 0
+spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+server.port: ${PORT}

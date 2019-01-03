@@ -39,5 +39,5 @@ Duy Nguyen
 Here is the link to my website (still a lot of things is on progress): 
 
 ```
-https://shielded-citadel-49406.herokuapp.com/ (Not updated yet)
+https://ntkduy-portfolio.herokuapp.com/ (Not finished yet)
 ```

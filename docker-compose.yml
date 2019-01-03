@@ -24,22 +24,23 @@ services:
     restart: always
     
   app:
-    restart: always
     environment:
       - MYSQL_DATABASE=dev
       - MYSQL_HOST=mysql
       - MYSQL_PORT=3306
       - MYSQL_USER=ntkduy
       - MYSQL_PASSWORD=123456
-      - SERVER_PORT=8080
-    build: ./api
+      - PORT=8080
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./api
     working_dir: /app
     volumes:
       - ./api:/app
       - ~/.m2:/root/.m2
     expose:
       - '8080'
-    command: mvn clean spring-boot:run
+    command: mvn clean spring-boot:run -Drun.profiles=development
     depends_on:
       - nginx
       - mysql
