@@ -42,6 +42,11 @@ public class PostController extends BaseController {
         return postList;
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Post getPostById(@PathVariable("id") Long id) {
+        return postRepository.findOne(id);
+    }
+
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity addPost(@RequestBody Post post) {
         if (Objects.isNull(post.getCategory())) {

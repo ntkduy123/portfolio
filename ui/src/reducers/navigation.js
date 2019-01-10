@@ -1,6 +1,6 @@
 import {
-    HOME_PAGE
-  } from '../constants/navigation'
+  HOME_PAGE
+} from '../constants/navigation'
 import { CHANGE_ROUTE } from '../actions/types';
   
 const INITIAL_STATE = {
@@ -10,7 +10,6 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, { type, routeName }) => {
   switch (type) {
     case CHANGE_ROUTE:
-      console.log(routeName);
       return {
         ...state,
         routeName

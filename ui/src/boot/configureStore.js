@@ -4,7 +4,7 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 import reducer from '../reducers'
-// import fetchMiddleware from 'middlewares/fetch'
+import fetchMiddleware from '../middlewares/fetch'
 
 const persistConfig = {
   key: 'primary',
@@ -14,7 +14,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, reducer)
 
 const enhancer = compose(
-  applyMiddleware(thunk)
+  applyMiddleware(thunk, fetchMiddleware)
 )
 
 export const store = createStore(persistedReducer, enhancer)

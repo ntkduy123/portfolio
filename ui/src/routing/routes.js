@@ -9,9 +9,9 @@ import {
 
 import Home from '../components/Home';
 import Resume from '../components/Resume';
-import Blog from '../components/Blog';
+import Blog from '../containers/pages/Blog/BlogPage';
 import Portfolio from '../components/Portfolio';
-import NewPost from '../components/NewPost';
+import WritePost from '../containers/pages/WritePost/WritePostPage';
 
 const routes = [
   {
@@ -41,8 +41,8 @@ const routes = [
   {
     state: NEW_POST,
     path: NEW_POST,
-    component: NewPost,
-    caption: 'New post'
+    component: WritePost,
+    caption: 'Write post'
   },
 ];
 

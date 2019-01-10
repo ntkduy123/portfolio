@@ -184,33 +184,49 @@ textarea.form-control:focus {
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
+
 .form-control:focus + .form-control-border {
   left: 0;
   right: 0;
   z-index: 1;
 }
+
 .has-error .form-control + .form-control-border {
   background: #ff4e4e;
 }
+
+.form-control, .form-control:focus {
+  height: auto;
+}
+
+select.form-control, select.form-control:focus {
+  font-size: 1em;
+}
+
 .form-control-icon {
   position: absolute;
   top: 13px;
   right: 13px;
   color: #d3d3d3;
 }
+
 .form-control:focus + .form-control-icon {
   color: #ffcd38;
 }
+
 .form-control::-moz-placeholder {
   color: #adadac;
   opacity: 1;
 }
+
 .form-control:-ms-input-placeholder {
   color: #adadac;
 }
+
 .form-control::-webkit-input-placeholder {
   color: #adadac;
 }
+
 .form-group .help-block {
   position: absolute;
   display: inline-block;

@@ -1,29 +1,29 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 
-import { Routes } from "../../routing";
+import { Routes } from '../../routing'
 
-import Header from "../Header";
-import MobileHeader from "../MobileHeader";
+import Header from '../Header'
+import MobileHeader from '../MobileHeader'
 
 class Main extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       headerOpen: false
-    };
-    this.onRouteChange(props);
+    }
+    this.onRouteChange(props)
   }
 
   componentWillReceiveProps(nextProps) {
-    const { routeName } = this.props;
-    const { pathname: nextRouteName } = nextProps.location;
+    const { routeName } = this.props
+    const { pathname: nextRouteName } = nextProps.location
     if (routeName !== nextRouteName) {
-      this.props.changeRoute(nextRouteName);
+      this.props.changeRoute(nextRouteName)
     }
   }
 
   onRouteChange = ({ location: { pathname: routeName } }) => {
-    this.props.changeRoute(routeName);
+    this.props.changeRoute(routeName)
   };
 
   toggleHeader = () => {
@@ -44,6 +44,7 @@ class Main extends Component {
         <Header
           routeName={this.props.routeName}
           headerOpen={this.state.headerOpen}
+          toggleHeader={this.toggleHeader}
         />
         <MobileHeader toggleHeader={this.toggleHeader} />
         <div className="site-main" id="main">
@@ -54,7 +55,7 @@ class Main extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 

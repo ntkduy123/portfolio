@@ -4,7 +4,7 @@ const MobileHeader = ({ toggleHeader }) => (
   <div>
     <div className="mobile-header mobile-visible">
       <div className="mobile-logo-container">
-        <div className="mobile-site-title">Alex Smith</div>
+        <div className="mobile-site-title">Duy Nguyen</div>
       </div>
       <a onClick={toggleHeader} className="menu-toggle mobile-visible">
         <i className="fa fa-bars" />

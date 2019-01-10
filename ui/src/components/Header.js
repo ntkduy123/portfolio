@@ -3,7 +3,7 @@ import Navigation from './Navigation';
 
 import myPhoto from "../static/images/my_photo.png";
 
-const Header = ({ headerOpen, routeName }) => (
+const Header = ({ headerOpen, routeName, toggleHeader }) => (
   <header className={"header " + (!headerOpen ? "mobile-menu-hide" : "")} id="site_header">
     <div className="my-photo">
       <img alt="image" src={myPhoto} />
@@ -13,7 +13,7 @@ const Header = ({ headerOpen, routeName }) => (
       <h1 className="site-title">Duy Nguyen</h1>
       <p className="site-description">Software Engineer</p>
     </div>
-    <Navigation routeName={routeName} />
+    <Navigation toggleHeader={toggleHeader} routeName={routeName} />
   </header>
 );
 
