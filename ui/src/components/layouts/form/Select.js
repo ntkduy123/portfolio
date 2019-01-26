@@ -1,18 +1,18 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class Select extends Component {
-  handleInputChange = e => {
-    const { handleChange, name } = this.props;
+  handleInputChange = (e) => {
+    const { handleChange, name } = this.props
 
-    const target = e.target;
-    const value = target.value;
+    const target = e.target
+    const value = target.value
 
-    handleChange(name, { id: value });
+    handleChange(name, { id: value })
   };
 
   render() {
-    const { value, name, options } = this.props;
-    console.log(value)
+    const { value, name, options } = this.props
     return (
       <select
         value={value.id}
@@ -26,8 +26,15 @@ class Select extends Component {
           </option>
         ))}
       </select>
-    );
+    )
   }
 }
 
-export default Select;
+Select.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.shape(),
+  options: PropTypes.arrayOf(PropTypes.shape())
+}
+
+export default Select

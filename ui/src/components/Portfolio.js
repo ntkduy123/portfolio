@@ -1,17 +1,10 @@
-import React from "react";
-
-import project1 from "../static/images/1.jpg";
-import project2 from "../static/images/2.jpg";
-import project3 from "../static/images/3.jpg";
-import project4 from "../static/images/4.jpg";
-import project5 from "../static/images/5.jpg";
-import project6 from "../static/images/6.jpg";
-import project7 from "../static/images/7.jpg";
-import project8 from "../static/images/8.jpg";
-import project9 from "../static/images/9.jpg";
-import project10 from "../static/images/10.jpg";
-import project11 from "../static/images/11.jpg";
-import project12 from "../static/images/12.jpg";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import project1 from '../static/images/1.jpg'
+import project2 from '../static/images/2.jpg'
+import project3 from '../static/images/3.jpg'
+import project4 from '../static/images/4.jpg'
+import project5 from '../static/images/5.jpg'
 
 const Portfolio = () => (
   <section className="pt-page pt-page-4 pt-page-current" data-id="portfolio">
@@ -22,24 +15,16 @@ const Portfolio = () => (
     <div className="portfolio-content">
       <ul className="portfolio-filters" id="portfolio_filters">
         <li className="active">
-          <a className="filter btn btn-sm btn-link active" data-group="all">
-            All
-          </a>
+          <Link to="/" className="filter btn btn-sm btn-link active" data-group="all">All</Link>
         </li>
         <li>
-          <a className="filter btn btn-sm btn-link" data-group="media">
-            Media
-          </a>
+          <Link to="/" className="filter btn btn-sm btn-link" data-group="media">Media</Link>
         </li>
         <li>
-          <a className="filter btn btn-sm btn-link" data-group="illustration">
-            Illustration
-          </a>
+          <Link to="/" className="filter btn btn-sm btn-link" data-group="illustration">Illustration</Link>
         </li>
         <li>
-          <a className="filter btn btn-sm btn-link" data-group="video">
-            Video
-          </a>
+          <Link to="/" className="filter btn btn-sm btn-link" data-group="video">Video</Link>
         </li>
       </ul>
       <div
@@ -50,88 +35,88 @@ const Portfolio = () => (
           className="item shuffle-item filtered"
           data-groups='["all", "media"]'
         >
-          <a
+          <Link
+            to="/"
             className="ajax-page-load"
-            href="#"
           >
-            <img src={project1} />
+            <img alt="404" src={project1} />
             <div>
               <h5 className="name">Project Name</h5>
               <small>Media</small>
               <i className="fa fa-file-text-o" />
             </div>
-          </a>
+          </Link>
         </figure>
         <figure
           className="item shuffle-item filtered"
           data-groups='["all", "video"]'
         >
-          <a
+          <Link
+            to="/"
             title="Praesent Dolor Ex"
             className="lightbox mfp-iframe"
-            href="#"
           >
-            <img src={project2} />
+            <img alt="404" src={project2} />
             <div>
               <h5 className="name">Project Name</h5>
               <small>Video</small>
               <i className="fa fa-video-camera" />
             </div>
-          </a>
+          </Link>
         </figure>
         <figure
           className="item shuffle-item filtered"
           data-groups='["all","illustration"]'
         >
-          <a
+          <Link
+            to="/"
             title="Duis Eu Eros Viverra"
             className="lightbox"
-            href="#"
           >
-            <img src={project3} />
+            <img alt="404" src={project3} />
             <div>
               <h5 className="name">Project Name</h5>
               <small>Illustration</small>
               <i className="fa fa-image" />
             </div>
-          </a>
+          </Link>
         </figure>
         <figure
           className="item shuffle-item filtered"
           data-groups='["all", "media"]'
         >
-          <a
+          <Link
+            to="/"
             className="ajax-page-load"
-            href="#"
           >
-            <img src={project4} />
+            <img alt="404" src={project4} />
             <div>
               <h5 className="name">Project Name</h5>
               <small>Media</small>
               <i className="fa fa-file-text-o" />
             </div>
-          </a>
+          </Link>
         </figure>
         <figure
           className="item shuffle-item filtered"
           data-groups='["all", "illustration"]'
         >
-          <a
+          <Link
+            to="/"
             title="Aliquam Condimentum Magna Rhoncus"
             className="lightbox"
-            href="#"
           >
-            <img src={project5} />
+            <img alt="404" src={project5} />
             <div>
               <h5 className="name">Project Name</h5>
               <small>Illustration</small>
               <i className="fa fa-image" />
             </div>
-          </a>
+          </Link>
         </figure>
       </div>
     </div>
   </section>
-);
+)
 
-export default Portfolio;
+export default Portfolio

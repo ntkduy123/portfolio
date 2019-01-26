@@ -1,15 +1,14 @@
-import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
 
-import { changeRoute } from '../../actions/navigation';
+import { changeRoute } from '../../actions/navigation'
 
-import Main from '../../components/layouts/Main';
- 
+import Main from '../../components/layouts/Main'
+
 const mapStateToProps = ({ navigation }) => navigation
 
 const mapDispatchToProps = {
-    changeRoute
+  changeRoute
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main))

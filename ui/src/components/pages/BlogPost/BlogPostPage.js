@@ -1,11 +1,13 @@
-import React, { Component } from "react";
-import BlogPostFull2 from "../../../static/images/blog_post_2_full.jpg";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import BlogPostFull2 from '../../../static/images/blog_post_2_full.jpg'
 
 class BlogPost extends Component {
-
   componentDidMount() {
-    const { id } = this.props.match.params
-    this.props.getPostById(id)
+    const { match, getPostById } = this.props
+    const { id } = match.params
+    getPostById(id)
   }
 
   render() {
@@ -33,50 +35,58 @@ class BlogPost extends Component {
           <h1>{post.title}</h1>
           <ul className="tags">
             <li>
-              <a>HTML5</a>
+              <Link to="/">HTML5</Link>
             </li>
             <li>
-              <a>CSS3</a>
+              <Link to="/">CSS3</Link>
             </li>
             <li>
-              <a>jQuery</a>
+              <Link to="/">jQuery</Link>
             </li>
             <li>
-              <a>Ajax</a>
+              <Link to="/">Ajax</Link>
             </li>
             <li>
-              <a>PHP5</a>
+              <Link to="/">PHP5</Link>
             </li>
           </ul>
           <p>
             {post.content}
           </p>
           <div className="post-info">
-            <span className="autor">
-              <i className="fa fa-fw fa-user" /> John Doe
-            </span>
+            {/* <span className="autor">
+              <i className="fa fa-fw fa-user" />
+              John Doe
+            </span> */}
             <span className="divider">|</span>
             <span className="date">
-              <i className="fa fa-fw fa-clock-o" /> {formattedDate}
+              <i className="fa fa-fw fa-clock-o" />
+              {formattedDate}
             </span>
             {/* Share Buttons */}
             <div className="btn-group share-buttons pull-right hidden-xs">
-              <a className="btn" href="#" target="_blank">
-                <i className="fa fa-facebook" />{" "}
-              </a>
-              <a className="btn" href="#" target="_blank">
-                <i className="fa fa-twitter" />{" "}
-              </a>
-              <a className="btn" href="#" target="_blank">
-                <i className="fa fa-dribbble" />{" "}
-              </a>
+              <Link to="/" className="btn" target="_blank">
+                <i className="fa fa-facebook" />
+              </Link>
+              <Link to="/" className="btn" target="_blank">
+                <i className="fa fa-twitter" />
+              </Link>
+              <Link to="/" className="btn" target="_blank">
+                <i className="fa fa-dribbble" />
+              </Link>
             </div>
             {/* /Share Buttons */}
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default BlogPost;
+BlogPost.propTypes = {
+  getPostById: PropTypes.func.isRequired,
+  post: PropTypes.shape(),
+  match: PropTypes.shape()
+}
+
+export default BlogPost

@@ -7,14 +7,18 @@ import {
   GET_POST_CATEGORY_ERROR,
   ADD_POST,
   ADD_POST_OK,
-  ADD_POST_ERROR
-} from '../actions/types';
+  ADD_POST_ERROR,
+  UPLOAD_POST_IMAGE,
+  UPLOAD_POST_IMAGE_OK,
+  UPLOAD_POST_IMAGE_ERROR
+} from '../actions/types'
 
 const INITIAL_STATE = {
   posts: [],
   categories: [],
   loading: false,
-  error: false
+  error: false,
+  postId: undefined
 }
 
 export default (state = INITIAL_STATE, payload) => {
@@ -61,13 +65,23 @@ export default (state = INITIAL_STATE, payload) => {
     case ADD_POST_OK:
       return {
         ...state,
-        loading: false
+        loading: false,
+        postId: payload.data.postId
       }
     case ADD_POST_ERROR:
       return {
         ...state,
         error: true,
         loading: false
+      }
+    case UPLOAD_POST_IMAGE:
+      return state
+    case UPLOAD_POST_IMAGE_OK:
+      return state
+    case UPLOAD_POST_IMAGE_ERROR:
+      return {
+        ...state,
+        error: true
       }
     default:
       return state

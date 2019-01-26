@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Resume = () => (
   <section className="pt-page pt-page-3 pt-page-current" data-id="resume">
@@ -17,34 +18,22 @@ const Resume = () => (
             <h5 className="event-date">2013</h5>
             <h4 className="event-name">Computer Science</h4>
             <span className="event-description">University of Technology</span>
-            <p>
-              4 years of studying in computer science field with many subjects
-              such as Algorithm, Database and Networking.
-            </p>
+            {/* eslint-disable-next-line max-len */}
+            <p>4 years of studying in computer science field with many subjects such as Algorithm, Database and Networking.</p>
           </div>
           {/* Single event */}
           <div className="timeline-event te-primary">
             <h5 className="event-date">2010</h5>
             <h4 className="event-name">High school</h4>
-            <span className="event-description">
-              High school for the gifted
-            </span>
-            <p>
-              Learn basic math, physics and chemical etc, 2nd prize math
-              competition.
-            </p>
+            <span className="event-description">High school for the gifted</span>
+            <p>Learn basic math, physics and chemical etc, 2nd prize math competition.</p>
           </div>
           {/* Single event */}
           <div className="timeline-event te-primary">
             <h5 className="event-date">2006</h5>
             <h4 className="event-name">Secondary school</h4>
-            <span className="event-description">
-              Nguyen Van Phu secondary school
-            </span>
-            <p>
-              Learn basic math, physics and chemical etc, 2nd prize math
-              competition.
-            </p>
+            <span className="event-description">Nguyen Van Phu secondary school</span>
+            <p>Learn basic math, physics and chemical etc, 2nd prize mathcompetition.</p>
           </div>
         </div>
       </div>
@@ -58,31 +47,23 @@ const Resume = () => (
             <h5 className="event-date">Oct 2018 - Current</h5>
             <h4 className="event-name">Junior Software Engineer</h4>
             <span className="event-description">Zalora</span>
-            <p>
-              Develop OMS (Order Management System), a system that helps
-              managing Zalora's warehouse.
-            </p>
+            <p>Develop OMS (Order Management System), a system that helps managing Zalora warehouse.</p>
           </div>
           {/* Single event */}
           <div className="timeline-event te-primary">
             <h5 className="event-date">March 2018 - Aug 2018</h5>
             <h4 className="event-name">Junior Software Engineer</h4>
             <span className="event-description">Adnovum Vietnam LLC</span>
-            <p>
-              An application based on Activiti helps to embedd Business Process
-              Management into applications more easier with advanced process
-              design tools.
-            </p>
+            {/* eslint-disable-next-line max-len */}
+            <p>An application based on Activiti helps to embedd Business Process Management into applications more easier with advanced process design tools.</p>
           </div>
           {/* Single event */}
           <div className="timeline-event te-primary">
             <h5 className="event-date">May 2017 - Oct 2017</h5>
             <h4 className="event-name">Jelldesk Application</h4>
             <span className="event-description">Freelancer</span>
-            <p>
-              An application allows agents to engage customers over websites by
-              creating a personal connection with customers looking for support.
-            </p>
+            {/* eslint-disable-next-line max-len */}
+            <p>An application allows agents to engage customers over websites by creating a personal connection with customers looking for support.</p>
           </div>
         </div>
       </div>
@@ -117,13 +98,11 @@ const Resume = () => (
     <div className="row">
       <div className="col-sm-12 col-md-12">
         <div className="download-cv-block">
-          <a className="button" href="#" target="_blank">
-            Download CV
-          </a>
+          <Link to="/" className="button" target="_blank">Download CV</Link>
         </div>
       </div>
     </div>
   </section>
-);
+)
 
-export default Resume;
+export default Resume

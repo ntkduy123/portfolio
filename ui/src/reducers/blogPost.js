@@ -2,7 +2,7 @@ import {
   GET_POST_BY_ID,
   GET_POST_BY_ID_OK,
   GET_POST_BY_ID_ERROR
-} from "../actions/types";
+} from '../actions/types'
 
 const INITIAL_STATE = {
   post: {},

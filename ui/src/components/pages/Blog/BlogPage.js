@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-
-import BlogCard from './BlogCard';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import BlogCard from './BlogCard'
 
 class Blog extends Component {
   componentDidMount() {
     const { getAllPost } = this.props
-    getAllPost();
+    getAllPost()
   }
 
   render() {
+    const { posts } = this.props
     return (
       <section className="pt-page pt-page-5 pt-page-current" data-id="blog">
         <div className="section-title-block">
@@ -17,14 +18,19 @@ class Blog extends Component {
         </div>
         <div className="blog-masonry">
           {
-            this.props.posts.map(post => (
+            posts.map(post => (
               <BlogCard key={post.id} post={post} />
             ))
           }
         </div>
       </section>
-    );
+    )
   }
 }
 
-export default Blog;
+Blog.propTypes = {
+  getAllPost: PropTypes.func.isRequired,
+  posts: PropTypes.arrayOf(PropTypes.shape())
+}
+
+export default Blog

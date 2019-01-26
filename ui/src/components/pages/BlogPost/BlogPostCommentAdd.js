@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const BlogPostCommentAdd = () => (
   <div className="post-comment-add">
@@ -16,16 +16,14 @@ const BlogPostCommentAdd = () => (
           name="message"
           className="form-control"
           placeholder="Message..."
-          defaultValue={""}
+          defaultValue=""
         />
         <div className="form-control-border" />
         <i className="form-control-icon fa fa-comment" />
       </div>
-      <button className="button" type="submit">
-        Add comment
-      </button>
+      <button className="button" type="submit">Add comment</button>
     </form>
   </div>
-);
+)
 
-export default BlogPostCommentAdd;
+export default BlogPostCommentAdd

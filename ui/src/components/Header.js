@@ -1,12 +1,13 @@
-import React from "react";
-import Navigation from './Navigation';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Navigation from './Navigation'
 
-import myPhoto from "../static/images/my_photo.png";
+import myPhoto from '../static/images/my_photo.png'
 
 const Header = ({ headerOpen, routeName, toggleHeader }) => (
-  <header className={"header " + (!headerOpen ? "mobile-menu-hide" : "")} id="site_header">
+  <header className={`header ${!headerOpen ? 'mobile-menu-hide' : ''}`} id="site_header">
     <div className="my-photo">
-      <img alt="image" src={myPhoto} />
+      <img alt="404" src={myPhoto} />
       <div className="mask" />
     </div>
     <div className="site-title-block">
@@ -15,6 +16,12 @@ const Header = ({ headerOpen, routeName, toggleHeader }) => (
     </div>
     <Navigation toggleHeader={toggleHeader} routeName={routeName} />
   </header>
-);
+)
 
-export default Header;
+Header.propTypes = {
+  headerOpen: PropTypes.bool.isRequired,
+  routeName: PropTypes.string.isRequired,
+  toggleHeader: PropTypes.func.isRequired
+}
+
+export default Header

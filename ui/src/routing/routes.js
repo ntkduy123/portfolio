@@ -2,16 +2,15 @@ import {
   HOME_PAGE,
   RESUME_PAGE,
   BLOG_PAGE,
-  BLOG_POST,
   PORTFOLIO_PAGE,
   NEW_POST
-} from '../constants/navigation';
+} from '../constants/navigation'
 
-import Home from '../components/Home';
-import Resume from '../components/Resume';
-import Blog from '../containers/pages/Blog/BlogPage';
-import Portfolio from '../components/Portfolio';
-import WritePost from '../containers/pages/WritePost/WritePostPage';
+import Home from '../components/Home'
+import Resume from '../components/Resume'
+import Blog from '../containers/pages/Blog/BlogPage'
+import Portfolio from '../components/Portfolio'
+import WritePost from '../containers/pages/WritePost/WritePostPage'
 
 const routes = [
   {
@@ -44,6 +43,6 @@ const routes = [
     component: WritePost,
     caption: 'Write post'
   },
-];
+]
 
-export default routes;
+export default routes

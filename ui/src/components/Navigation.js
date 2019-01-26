@@ -1,13 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-import routes from "../routing/routes";
+import routes from '../routing/routes'
 
 const Navigation = ({ routeName, toggleHeader }) => (
   <div className="site-nav">
     <ul className="site-main-menu" id="nav">
       {routes.map(route => (
-        <li key={route.path} className={routeName === route.path ? "active" : ""}>
+        <li key={route.path} className={routeName === route.path ? 'active' : ''}>
           <Link
             className="pt-trigger"
             to={route.path}
@@ -22,22 +23,27 @@ const Navigation = ({ routeName, toggleHeader }) => (
     </ul>
     <ul className="social-links">
       <li>
-        <a title="Twitter" className="tip social-button" href="#">
+        <Link to="/" title="Twitter" className="tip social-button">
           <i className="fa fa-twitter" />
-        </a>
+        </Link>
       </li>
       <li>
-        <a title="Facebook" className="tip social-button" href="#">
+        <Link to="/" title="Facebook" className="tip social-button">
           <i className="fa fa-facebook" />
-        </a>
+        </Link>
       </li>
       <li>
-        <a title="Google Plus" className="tip social-button" href="#">
+        <Link to="/" title="Google Plus" className="tip social-button">
           <i className="fa fa-google-plus" />
-        </a>
+        </Link>
       </li>
     </ul>
   </div>
-);
+)
 
-export default Navigation;
+Navigation.propTypes = {
+  routeName: PropTypes.string.isRequired,
+  toggleHeader: PropTypes.func.isRequired
+}
+
+export default Navigation

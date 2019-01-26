@@ -1,8 +1,9 @@
 import {
   ADD_POST,
   GET_POST,
-  GET_POST_CATEGORY
-} from './types';
+  GET_POST_CATEGORY,
+  UPLOAD_POST_IMAGE
+} from './types'
 
 export const getAllPost = () => ({
   type: GET_POST,
@@ -24,7 +25,17 @@ export const addPost = post => ({
   type: ADD_POST,
   request: {
     url: 'api/post',
+    method: 'POST'
+  },
+  params: post
+})
+
+export const uploadPostImage = data => ({
+  type: UPLOAD_POST_IMAGE,
+  request: {
+    url: 'api/post/upload',
     method: 'POST',
-    params: post
-  }
+    type: 'upload'
+  },
+  params: data
 })

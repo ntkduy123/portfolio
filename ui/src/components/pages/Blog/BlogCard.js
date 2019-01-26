@@ -1,10 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const BlogCard = ({ post }) => {
-  const date = new Date(post.updatedAt);
-  const day = date.getDate();
-  const month = date.toLocaleString('en-us', { month: 'short' });
+  const date = new Date(post.updatedAt)
+  const day = date.getDate()
+  const month = date.toLocaleString('en-us', { month: 'short' })
 
   return (
     <div className="item">
@@ -37,7 +38,11 @@ const BlogCard = ({ post }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default BlogCard;
+BlogCard.propTypes = {
+  post: PropTypes.shape()
+}
+
+export default BlogCard

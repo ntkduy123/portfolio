@@ -6,7 +6,6 @@ const fetchMiddleware = store => next => (action) => {
   }
 
   const fetchAction = { ...action }
-  const { type } = fetchAction.request
   const fetchRequest = createFetchRequest(fetchAction)
 
   Promise.race([fetchRequest])
@@ -15,7 +14,7 @@ const fetchMiddleware = store => next => (action) => {
         throw Error(response.statusText)
       }
 
-      let contentPromise = response.json()
+      const contentPromise = response.json()
 
       contentPromise.then((content) => {
         store.dispatch({
@@ -42,27 +41,35 @@ const createFetchRequest = (action) => {
     url = '/',
     method = 'GET',
     headers = {},
+    type
   } = action.request
 
-  const body = ['POST'].indexOf(method) >= 0 && action.params
-    ? JSON.stringify(action.params)
-    : undefined
-  
+
+  let body
+  let contentType
+  if (['POST'].indexOf(method) >= 0 && action.params) {
+    if (type === 'upload') {
+      body = action.params
+    }
+    else {
+      body = JSON.stringify(action.params)
+      contentType = 'application/json'
+    }
+  }
+
   const queryParams = ['GET'].indexOf(method) >= 0 && action.params
     ? `?${getEncodedUrlParams(action.params)}`
     : ''
 
-    console.log(getApiUrl(url))
-
-    const fetchRequest = fetch(`${getApiUrl(url)}${queryParams}`, {
-      method,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        ...headers
-      },
-      body
-    })
-    return fetchRequest
+  const fetchRequest = fetch(`${getApiUrl(url)}${queryParams}`, {
+    method,
+    headers: {
+      ...(contentType && { 'Content-Type': contentType }),
+      ...headers
+    },
+    body
+  })
+  return fetchRequest
 }
 
 const getApiUrl = (url) => {

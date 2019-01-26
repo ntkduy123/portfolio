@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const MobileHeader = ({ toggleHeader }) => (
   <div>
@@ -6,11 +7,15 @@ const MobileHeader = ({ toggleHeader }) => (
       <div className="mobile-logo-container">
         <div className="mobile-site-title">Duy Nguyen</div>
       </div>
-      <a onClick={toggleHeader} className="menu-toggle mobile-visible">
+      <button type="button" onClick={toggleHeader} className="menu-toggle mobile-visible">
         <i className="fa fa-bars" />
-      </a>
+      </button>
     </div>
   </div>
-);
+)
 
-export default MobileHeader;
+MobileHeader.propTypes = {
+  toggleHeader: PropTypes.func.isRequired
+}
+
+export default MobileHeader

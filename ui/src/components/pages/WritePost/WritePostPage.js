@@ -1,13 +1,14 @@
-import React, { Component } from "react";
-import { Editor } from "@tinymce/tinymce-react";
-import Form from "../../layouts/form/Form";
-import Input from "../../layouts/form/Input";
-import Select from "../../layouts/form/Select";
-import TextEditor from "../../layouts/form/Editor";
+import React, { Component } from 'react'
+import { EditorState } from 'draft-js'
+import PropTypes from 'prop-types'
+import Form from '../../layouts/form/Form'
+import Input from '../../layouts/form/Input'
+import Select from '../../layouts/form/Select'
+import TextEditor from '../../layouts/form/Editor'
 
 class WritePostPage extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       title: '',
       author: '',
@@ -15,26 +16,51 @@ class WritePostPage extends Component {
       category: {
         id: '1'
       },
-      content: ''
-    };
+      content: EditorState.createEmpty()
+    }
+  }
+
+  componentDidMount() {
+    const { getAllCategory } = this.props
+    getAllCategory()
   }
 
   handleChange = (name, value) => {
     this.setState({
       [name]: value
-    });
+    })
   };
 
-  componentDidMount() {
-    this.props.getAllCategory();
-  }
+  addPost = (e) => {
+    const { addPost, uploadPostImage, postId } = this.props
+    const {
+      title, author, image, category, content
+    } = this.state
 
-  addPost = e => {
-    e.preventDefault();
-    console.log(this.state);
+    addPost({
+      title,
+      author,
+      category,
+      content,
+      image: ''
+    })
+
+    const formData = new FormData()
+    formData.append('postId', postId)
+    formData.append('file', image[0])
+
+    uploadPostImage(formData)
   };
 
   render() {
+    const { categories } = this.props
+    const {
+      title,
+      author,
+      image,
+      category,
+      content
+    } = this.state
     return (
       <section className="pt-page pt-page-6 pt-page-current" data-id="contact">
         <div className="section-title-block">
@@ -48,46 +74,63 @@ class WritePostPage extends Component {
             </div>
             <Form handleSubmit={this.addPost} btnSubmitText="Add new post">
               <Input
-                value={this.state.title}
+                value={title}
                 handleChange={this.handleChange}
                 name="title"
                 type="text"
                 placeholder="Title"
                 icon="fa-header"
+                validations={{
+                  isNotEmpty: true
+                }}
               />
               <Input
-                value={this.state.author}
+                value={author}
                 handleChange={this.handleChange}
                 name="author"
                 type="text"
                 placeholder="Author"
                 icon="fa-user"
+                validations={{
+                  isNotEmpty: true
+                }}
               />
               <Input
-                value={this.state.image}
+                value={image}
                 handleChange={this.handleChange}
                 name="image"
                 type="file"
                 placeholder="Image"
                 icon="fa-picture-o"
+                validations={{
+                  isNotEmpty: true
+                }}
               />
               <Select
-                value={this.state.category}
+                value={category}
                 handleChange={this.handleChange}
                 name="category"
-                options={this.props.categories}
+                options={categories}
               />
               <TextEditor
+                name="content"
+                value={content}
                 handleChange={this.handleChange}
-                value={this.state.content}
-                name="cotent"
               />
             </Form>
           </div>
         </div>
       </section>
-    );
+    )
   }
 }
 
-export default WritePostPage;
+WritePostPage.propTypes = {
+  getAllCategory: PropTypes.func.isRequired,
+  addPost: PropTypes.func.isRequired,
+  uploadPostImage: PropTypes.func.isRequired,
+  postId: PropTypes.number.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.shape())
+}
+
+export default WritePostPage

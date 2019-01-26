@@ -31,6 +31,9 @@ services:
       - MYSQL_USER=ntkduy
       - MYSQL_PASSWORD=123456
       - PORT=8080
+      - AWS_ACCESS_KEY_ID=AKIAIRTVPXO2AWRIU52Q
+      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_BUCKET_NAME=my-portfolio-static
     build:
       dockerfile: Dockerfile.dev
       context: ./api

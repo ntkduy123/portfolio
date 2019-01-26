@@ -1,8 +1,8 @@
 import {
   HOME_PAGE
 } from '../constants/navigation'
-import { CHANGE_ROUTE } from '../actions/types';
-  
+import { CHANGE_ROUTE } from '../actions/types'
+
 const INITIAL_STATE = {
   routeName: HOME_PAGE
 }
@@ -20,4 +20,3 @@ export default (state = INITIAL_STATE, { type, routeName }) => {
       }
   }
 }
-  

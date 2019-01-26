@@ -1,34 +1,33 @@
-import React, { Component } from "react";
-import { Editor } from "@tinymce/tinymce-react";
+import React, { Component } from 'react'
+import { Editor } from 'react-draft-wysiwyg'
+import { stateToHTML } from 'draft-js-export-html'
+
+import PropTypes from 'prop-types'
 
 class TextEditor extends Component {
-
-  handleInputChange = e => {
-    const { handleChange, name } = this.props;
-
-    const target = e.target;
-    const value = target.getContent();
-
-    handleChange(name, { id: value });
+  handleInputChange = (editorState) => {
+    const value = stateToHTML(editorState.getCurrentContent())
+    const { handleChange, name } = this.props
+    handleChange(name, value)
   };
 
   render() {
-    const { value, name } = this.props
+    const { name, value } = this.props
     return (
       <Editor
-        init={{
-          plugins: "link image code",
-          height: "480",
-          name: name,
-          toolbar:
-            "undo redo | bold italic | alignleft aligncenter alignright | code"
-        }}
         name={name}
-        value={value}
-        onChange={this.handleInputChange}
+        initialEditorState={value}
+        wrapperClassName="form-control"
+        onEditorStateChange={this.handleInputChange}
       />
-    );
+    )
   }
-};
+}
 
-export default TextEditor;
+TextEditor.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.shape()
+}
+
+export default TextEditor

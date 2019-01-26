@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import PropTypes from 'prop-types'
 import { Routes } from '../../routing'
 
 import Header from '../Header'
@@ -15,35 +16,39 @@ class Main extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { routeName } = this.props
+    const { routeName, changeRoute } = this.props
     const { pathname: nextRouteName } = nextProps.location
     if (routeName !== nextRouteName) {
-      this.props.changeRoute(nextRouteName)
+      changeRoute(nextRouteName)
     }
   }
 
   onRouteChange = ({ location: { pathname: routeName } }) => {
-    this.props.changeRoute(routeName)
+    const { changeRoute } = this.props
+    changeRoute(routeName)
   };
 
   toggleHeader = () => {
     this.setState(prevState => ({
       headerOpen: !prevState.headerOpen
-    }));
+    }))
   };
 
   render() {
+    const { routeName } = this.props
+    const { headerOpen } = this.state
+
     return (
       <div id="page" className="page">
-        <div className="preloader" style={{ display: "none" }}>
+        <div className="preloader" style={{ display: 'none' }}>
           <div className="preloader-animation">
             <div className="dot1" />
             <div className="dot2" />
           </div>
         </div>
         <Header
-          routeName={this.props.routeName}
-          headerOpen={this.state.headerOpen}
+          routeName={routeName}
+          headerOpen={headerOpen}
           toggleHeader={this.toggleHeader}
         />
         <MobileHeader toggleHeader={this.toggleHeader} />
@@ -59,4 +64,10 @@ class Main extends Component {
   }
 }
 
-export default Main;
+Main.propTypes = {
+  routeName: PropTypes.string.isRequired,
+  changeRoute: PropTypes.func.isRequired,
+  location: PropTypes.shape()
+}
+
+export default Main

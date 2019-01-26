@@ -1,8 +1,8 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 
-import routes from './routes';
-import BlogPostPage from '../containers/pages/BlogPost/BlogPostPage';
+import routes from './routes'
+import BlogPostPage from '../containers/pages/BlogPost/BlogPostPage'
 
 export const Routes = () => (
   <Switch>
@@ -13,4 +13,4 @@ export const Routes = () => (
     }
     <Route exact path="/blog/:id" component={BlogPostPage} />
   </Switch>
-);
+)
