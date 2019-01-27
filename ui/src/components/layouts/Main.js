@@ -35,9 +35,10 @@ class Main extends Component {
   };
 
   render() {
-    const { routeName } = this.props
+    const { routeName, loading } = this.props
     const { headerOpen } = this.state
 
+    console.log(loading)
     return (
       <div id="page" className="page">
         <div className="preloader" style={{ display: 'none' }}>
@@ -67,7 +68,8 @@ class Main extends Component {
 Main.propTypes = {
   routeName: PropTypes.string.isRequired,
   changeRoute: PropTypes.func.isRequired,
-  location: PropTypes.shape()
+  location: PropTypes.shape(),
+  loading: PropTypes.bool.isRequired
 }
 
 export default Main

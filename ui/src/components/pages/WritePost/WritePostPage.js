@@ -1,21 +1,14 @@
 import React, { Component } from 'react'
 import { EditorState } from 'draft-js'
 import PropTypes from 'prop-types'
-import Form from '../../layouts/form/Form'
-import Input from '../../layouts/form/Input'
-import Select from '../../layouts/form/Select'
-import TextEditor from '../../layouts/form/Editor'
+import { stateToHTML } from 'draft-js-export-html'
+import WritePostForm from './WritePostForm'
 
 class WritePostPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: '',
-      author: '',
       image: '',
-      category: {
-        id: '1'
-      },
       content: EditorState.createEmpty()
     }
   }
@@ -25,42 +18,51 @@ class WritePostPage extends Component {
     getAllCategory()
   }
 
-  handleChange = (name, value) => {
+  handleContentChange = (content) => {
     this.setState({
-      [name]: value
+      content
+    })
+  }
+
+  handleImageChange = (e) => {
+    const image = e.target.files[0]
+    this.setState({
+      image
+    })
+  }
+
+  handleSubmit = (values) => {
+    this.addPost(values)
+    this.uploadImage()
+  }
+
+  addPost = (post) => {
+    const { content } = this.state
+    const { addPost } = this.props
+    const postContent = stateToHTML(content.getCurrentContent())
+    addPost({
+      ...post,
+      image: '',
+      category: {
+        id: post.category
+      },
+      content: postContent
     })
   };
 
-  addPost = (e) => {
-    const { addPost, uploadPostImage, postId } = this.props
-    const {
-      title, author, image, category, content
-    } = this.state
-
-    addPost({
-      title,
-      author,
-      category,
-      content,
-      image: ''
-    })
+  uploadImage = () => {
+    const { uploadPostImage, postId } = this.props
+    const { image } = this.state
 
     const formData = new FormData()
     formData.append('postId', postId)
-    formData.append('file', image[0])
-
+    formData.append('file', image)
     uploadPostImage(formData)
-  };
+  }
 
   render() {
     const { categories } = this.props
-    const {
-      title,
-      author,
-      image,
-      category,
-      content
-    } = this.state
+    const { content, image } = this.state
     return (
       <section className="pt-page pt-page-6 pt-page-current" data-id="contact">
         <div className="section-title-block">
@@ -72,52 +74,14 @@ class WritePostPage extends Component {
             <div className="block-title">
               <h3>New Post Form</h3>
             </div>
-            <Form handleSubmit={this.addPost} btnSubmitText="Add new post">
-              <Input
-                value={title}
-                handleChange={this.handleChange}
-                name="title"
-                type="text"
-                placeholder="Title"
-                icon="fa-header"
-                validations={{
-                  isNotEmpty: true
-                }}
-              />
-              <Input
-                value={author}
-                handleChange={this.handleChange}
-                name="author"
-                type="text"
-                placeholder="Author"
-                icon="fa-user"
-                validations={{
-                  isNotEmpty: true
-                }}
-              />
-              <Input
-                value={image}
-                handleChange={this.handleChange}
-                name="image"
-                type="file"
-                placeholder="Image"
-                icon="fa-picture-o"
-                validations={{
-                  isNotEmpty: true
-                }}
-              />
-              <Select
-                value={category}
-                handleChange={this.handleChange}
-                name="category"
-                options={categories}
-              />
-              <TextEditor
-                name="content"
-                value={content}
-                handleChange={this.handleChange}
-              />
-            </Form>
+            <WritePostForm
+              handleContentChange={this.handleContentChange}
+              content={content}
+              handleImageChange={this.handleImageChange}
+              image={image}
+              categories={categories}
+              onSubmit={this.handleSubmit}
+            />
           </div>
         </div>
       </section>
@@ -127,8 +91,8 @@ class WritePostPage extends Component {
 
 WritePostPage.propTypes = {
   getAllCategory: PropTypes.func.isRequired,
-  addPost: PropTypes.func.isRequired,
   uploadPostImage: PropTypes.func.isRequired,
+  addPost: PropTypes.func.isRequired,
   postId: PropTypes.number.isRequired,
   categories: PropTypes.arrayOf(PropTypes.shape())
 }

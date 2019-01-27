@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { reducer as form } from 'redux-form'
 import navigation from './navigation'
 import blog from './blog'
 import blogPost from './blogPost'
@@ -8,5 +9,6 @@ export default combineReducers({
   navigation,
   blog,
   blogPost,
-  writePost
+  writePost,
+  form
 })
