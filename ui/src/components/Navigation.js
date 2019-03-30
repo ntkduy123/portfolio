@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import routes from '../routing/routes'
+import routes from '../routing/mainRoutes'
 
 const Navigation = ({ routeName, toggleHeader }) => (
   <div className="site-nav">

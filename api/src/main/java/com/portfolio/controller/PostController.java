@@ -1,129 +1,107 @@
 package com.portfolio.controller;
 
-import com.google.common.collect.Lists;
-import com.portfolio.EventList;
-import com.portfolio.ResponseMessage;
-import com.portfolio.constant.PostStatusList;
 import com.portfolio.domain.Post;
 import com.portfolio.domain.PostCategory;
+import com.portfolio.domain.PostImage;
 import com.portfolio.domain.PostStatus;
-import com.portfolio.listener.Intent;
-import com.portfolio.repository.jpa.PostCategoryRepository;
-import com.portfolio.repository.jpa.PostRepository;
-import com.portfolio.repository.jpa.PostStatusRepository;
-import com.portfolio.service.AmazonS3Service;
-import com.portfolio.service.AmazonService;
-import com.portfolio.service.PostService;
+import com.portfolio.dto.ResponseMessage;
+import com.portfolio.service.*;
 import com.portfolio.util.FileUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.io.File;
-import java.io.IOException;
-import java.util.List;
-import java.util.Objects;
 
 @Controller
 @ResponseBody
 @RequestMapping("/api/post")
-public class PostController extends BaseController {
-
-    @Resource
-    private PostRepository postRepository;
-
-    @Resource
-    private PostStatusRepository postStatusRepository;
-
-    @Resource
-    private PostCategoryRepository postCategoryRepository;
+public class PostController {
 
     @Resource
     private PostService postService;
 
     @Resource
+    private MapValidationErrorService mapValidationErrorService;
+
+    @Resource
     private AmazonS3Service amazonS3Service;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public List getPost() {
-        List<Post> postList = Lists.newArrayList(postRepository.findAll());
-        return postList;
+    @Resource
+    private PostImageService postImageService;
+
+    @Resource
+    private PostCategoryService postCategoryService;
+
+    @Resource
+    private PostStatusService postStatusService;
+
+    @GetMapping("")
+    public Iterable<Post> getAllPosts() {
+        return postService.findAllPosts();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public Post getPostById(@PathVariable("id") Long id) {
-        return postRepository.findOne(id);
+        return postService.findPostById(id);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity addPost(@RequestBody Post post) {
-        if (Objects.isNull(post.getCategory())) {
-            PostCategory category = postCategoryRepository.findOne(post.getId());
-            post.setCategory(category);
+    @PostMapping("")
+    public ResponseEntity<?> createPost(@Valid @RequestBody Post post, BindingResult result) {
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if(errorMap!=null) return errorMap;
+
+        Post newPost = postService.saveOrUpdatePost(post);
+        System.out.println(newPost.getPostCategory().getId());
+        for (PostImage postImage : post.getPostImages()) {
+            if (postImage.getId() == null) {
+                postImage.setPost(newPost);
+                PostImage test = postImageService.saveOrUpdatePostImage(postImage);
+            }
         }
 
-        Long postId = postService.addPost(post).getId();
-        ResponseMessage message = new ResponseMessage("success", postId);
-        return ResponseEntity.status(HttpStatus.OK).body(message);
+        return new ResponseEntity<>(newPost, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    @ResponseBody
-    public ResponseEntity upload(@RequestParam("file") MultipartFile multipartFile,
-                                 @RequestParam("postId") Long postId) throws IOException {
-        Post post = postRepository.findOne(postId);
+    @PostMapping("/image")
+    public ResponseEntity<?> createPostImage(@RequestParam("image") MultipartFile multipartFile) {
+        File file;
+        String name;
 
-        String fileName = String.format("%s_%s", postId, multipartFile.getOriginalFilename());
-        String url = amazonS3Service.upload(FileUtil.convertMultiPartToFile(multipartFile, fileName));
+        try {
+            name = postImageService.generatePostImageName(multipartFile.getOriginalFilename());
+            file = FileUtil.convertMultiPartToFile(multipartFile, name);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ResponseMessage("Error uploading images"), HttpStatus.BAD_REQUEST);
+        }
 
-        System.out.println(url);
-        post.setImage(url);
-        postRepository.save(post);
+        String url = amazonS3Service.upload(file);
+        PostImage postImage = new PostImage();
+        postImage.setName(name);
+        postImage.setUrl(url);
 
-        ResponseMessage message = new ResponseMessage("success", 1L);
-        return ResponseEntity.status(HttpStatus.OK).body(message);
+        return new ResponseEntity<>(postImage, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.DELETE)
-    public ResponseEntity removePost(@RequestBody Long id) {
-        postService.removePost(id);
-        return ResponseEntity.ok().build();
+    @DeleteMapping("/image/{id}")
+    public ResponseEntity<?> deletePostImage(@PathVariable("id") Long id) {
+        postImageService.deletePostImageById(id);
+
+        return new ResponseEntity<>(new ResponseMessage(String.format("Post Image ID %s was deleted", id)), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/active", method = RequestMethod.POST)
-    public ResponseEntity activePost(@RequestBody Post post) {
-        post.setStatus(postStatusRepository.findOne(PostStatusList.ACTIVE));
-        postService.triggerEvent(new Intent(
-                EventList.UPDATE_POST_STATUS,
-                post
-        ));
-        return ResponseEntity.ok().build();
+    @GetMapping(value = "/status")
+    public Iterable<PostStatus> getPostStatus() {
+        return postStatusService.findAllPostStatus();
     }
 
-    @RequestMapping(value = "/status" , method = RequestMethod.GET)
-    public List getPostStatus() {
-        List<PostStatus> postStatusList = Lists.newArrayList(postStatusRepository.findAll());
-        return postStatusList;
-    }
-
-    @RequestMapping(value = "/category" , method = RequestMethod.GET)
-    public List getPostCategory() {
-        List<PostCategory> postCategoryList = Lists.newArrayList(postCategoryRepository.findAll());
-        return postCategoryList;
-    }
-
-    @RequestMapping(value = "/status", method = RequestMethod.POST)
-    public ResponseEntity addPostStatus(@RequestBody PostStatus postStatus) {
-        postStatusRepository.save(postStatus);
-        return ResponseEntity.ok().build();
-    }
-
-    @RequestMapping(value = "/category", method = RequestMethod.POST)
-    public ResponseEntity addPostCategory(@RequestBody PostCategory postCategory) {
-        postCategoryRepository.save(postCategory);
-        return ResponseEntity.ok().build();
+    @GetMapping(value = "/category")
+    public Iterable<PostCategory> getPostCategory() {
+        return postCategoryService.findAllPostCategory();
     }
 }

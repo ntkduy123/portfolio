@@ -44,6 +44,7 @@
   background-color: #fff;
   padding: 30px;
   margin: -70px 40px 0;
+  font-size: 1.4em;
 }
 blockquote {
   margin: 20px 0;
@@ -150,4 +151,17 @@ blockquote {
 
 .media-body {
   margin-left: 20px;
+}
+
+.edit-btn {
+  margin-top: 2em;
+}
+
+.blog-post-main-image {
+  text-align: center;
+}
+
+.blog-post-main-image img {
+  height: 40em;
+  width: 86em;
 }

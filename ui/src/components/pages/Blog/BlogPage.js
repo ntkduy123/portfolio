@@ -9,7 +9,8 @@ class Blog extends Component {
   }
 
   render() {
-    const { posts } = this.props
+    const { postList } = this.props
+    console.log(postList)
     return (
       <section className="pt-page pt-page-5 pt-page-current" data-id="blog">
         <div className="section-title-block">
@@ -18,7 +19,7 @@ class Blog extends Component {
         </div>
         <div className="blog-masonry">
           {
-            posts.map(post => (
+            postList.map(post => (
               <BlogCard key={post.id} post={post} />
             ))
           }
@@ -30,7 +31,7 @@ class Blog extends Component {
 
 Blog.propTypes = {
   getAllPost: PropTypes.func.isRequired,
-  posts: PropTypes.arrayOf(PropTypes.shape())
+  postList: PropTypes.arrayOf(PropTypes.shape())
 }
 
 export default Blog

@@ -1,9 +1,10 @@
 package com.portfolio.repository.jpa;
 
 import com.portfolio.domain.PostStatus;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface PostStatusRepository extends CrudRepository<PostStatus, Long>, QueryDslPredicateExecutor<PostStatus>
+@Repository
+public interface PostStatusRepository extends CrudRepository<PostStatus, Long>
 {
 }

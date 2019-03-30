@@ -1,9 +1,10 @@
 package com.portfolio.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class PostStatus {
@@ -14,6 +15,10 @@ public class PostStatus {
     private String name;
 
     private String description;
+
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "postStatus", orphanRemoval = true)
+    @JsonIgnore
+    private List<Post> posts = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -37,5 +42,13 @@ public class PostStatus {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }

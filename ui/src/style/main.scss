@@ -14,6 +14,8 @@
 @import './pages/blogpost';
 @import './pages/portfolio';
 @import './pages/newPost';
+@import './pages/login';
+@import './pages/admin/adminBlog';
 
 .preloader {
   position: fixed;
@@ -23,6 +25,7 @@
   height: 100%;
   z-index: 9999;
   background: #fff;
+  opacity: 0.8;
 }
 
 .preloader-animation {

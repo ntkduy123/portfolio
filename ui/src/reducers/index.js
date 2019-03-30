@@ -4,11 +4,13 @@ import navigation from './navigation'
 import blog from './blog'
 import blogPost from './blogPost'
 import writePost from './writePost'
+import user from './user'
 
 export default combineReducers({
   navigation,
   blog,
   blogPost,
   writePost,
-  form
+  form,
+  user
 })

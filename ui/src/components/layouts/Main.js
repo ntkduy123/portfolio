@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
 
 import PropTypes from 'prop-types'
+import { ToastContainer } from 'react-toastify'
+import { Redirect } from 'react-router-dom'
 import { Routes } from '../../routing'
+import { isLogin } from '../../helpers/user'
+
+import { LOGIN } from '../../constants/navigation'
 
 import Header from '../Header'
 import MobileHeader from '../MobileHeader'
+import LoadingOverlay from './LoadingOverlay'
+
 
 class Main extends Component {
   constructor(props) {
@@ -35,22 +42,36 @@ class Main extends Component {
   };
 
   render() {
-    const { routeName, loading } = this.props
+    const { routeName, loading, logOut } = this.props
     const { headerOpen } = this.state
+    const isAdmin = routeName.includes('admin')
 
-    console.log(loading)
+    if (isAdmin && !isLogin()) {
+      return (
+        <Redirect to={
+          {
+            pathname: LOGIN,
+            state: { redirect: true }
+          }
+        }
+        />
+      )
+    }
+
     return (
       <div id="page" className="page">
-        <div className="preloader" style={{ display: 'none' }}>
-          <div className="preloader-animation">
-            <div className="dot1" />
-            <div className="dot2" />
-          </div>
-        </div>
+        <ToastContainer />
+        {
+          loading ? (
+            <LoadingOverlay />
+          ) : ''
+        }
         <Header
           routeName={routeName}
           headerOpen={headerOpen}
           toggleHeader={this.toggleHeader}
+          isAdmin={isAdmin}
+          logOut={logOut}
         />
         <MobileHeader toggleHeader={this.toggleHeader} />
         <div className="site-main" id="main">
@@ -66,10 +87,11 @@ class Main extends Component {
 }
 
 Main.propTypes = {
+  loading: PropTypes.bool.isRequired,
   routeName: PropTypes.string.isRequired,
   changeRoute: PropTypes.func.isRequired,
-  location: PropTypes.shape(),
-  loading: PropTypes.bool.isRequired
+  logOut: PropTypes.func.isRequired,
+  location: PropTypes.shape()
 }
 
 export default Main

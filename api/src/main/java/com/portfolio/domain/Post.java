@@ -1,35 +1,43 @@
 package com.portfolio.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Post {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotBlank(message = "Post title is required")
     private String title;
 
+    @NotBlank(message = "Post author is required")
+    private String author;
+
     @Lob
-    @NotNull
+    @NotBlank(message = "Post content is required")
     private String content;
 
-    @NotNull
-    private String image;
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "post", orphanRemoval = true)
+    private List<PostImage> postImages = new ArrayList<>();
 
-    @NotNull
-    @ManyToOne(cascade = CascadeType.MERGE, targetEntity = PostCategory.class)
-    private PostCategory category;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="post_category_id", nullable = false)
+    private PostCategory postCategory;
 
-    @NotNull
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity = PostStatus.class)
-    private PostStatus status;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="post_status_id", nullable = false)
+    private PostStatus postStatus;
 
     @CreationTimestamp
     private Timestamp createdAt;
@@ -49,6 +57,14 @@ public class Post {
         return title;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -61,20 +77,28 @@ public class Post {
         this.content = content;
     }
 
-    public PostCategory getCategory() {
-        return category;
+    public List<PostImage> getPostImages() {
+        return postImages;
     }
 
-    public void setCategory(PostCategory category) {
-        this.category = category;
+    public void setPostImages(List<PostImage> postImages) {
+        this.postImages = postImages;
     }
 
-    public PostStatus getStatus() {
-        return status;
+    public PostCategory getPostCategory() {
+        return postCategory;
     }
 
-    public void setStatus(PostStatus status) {
-        this.status = status;
+    public void setPostCategory(PostCategory postCategory) {
+        this.postCategory = postCategory;
+    }
+
+    public PostStatus getPostStatus() {
+        return postStatus;
+    }
+
+    public void setPostStatus(PostStatus postStatus) {
+        this.postStatus = postStatus;
     }
 
     public Timestamp getCreatedAt() {
@@ -91,13 +115,5 @@ public class Post {
 
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 }

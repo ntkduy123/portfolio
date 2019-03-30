@@ -1,4 +1,5 @@
 import { BASE_URL } from '../Constants'
+import { createToken } from '../helpers/user'
 
 const fetchMiddleware = store => next => (action) => {
   if (!action || !action.request) {
@@ -6,11 +7,11 @@ const fetchMiddleware = store => next => (action) => {
   }
 
   const fetchAction = { ...action }
-  const fetchRequest = createFetchRequest(fetchAction)
+  const fetchRequest = createFetchRequest(fetchAction, createToken())
 
   Promise.race([fetchRequest])
     .then((response) => {
-      if (!response.ok && response.status >= 400 && response.statusText) {
+      if (!response.ok && response.status >= 400) {
         throw Error(response.statusText)
       }
 
@@ -26,6 +27,7 @@ const fetchMiddleware = store => next => (action) => {
       })
     })
     .catch((error) => {
+      console.log(error)
       store.dispatch({
         type: `${action.type}_ERROR`,
         params: action.params,
@@ -36,7 +38,7 @@ const fetchMiddleware = store => next => (action) => {
   return next(action)
 }
 
-const createFetchRequest = (action) => {
+const createFetchRequest = (action, token) => {
   const {
     url = '/',
     method = 'GET',
@@ -47,7 +49,7 @@ const createFetchRequest = (action) => {
 
   let body
   let contentType
-  if (['POST'].indexOf(method) >= 0 && action.params) {
+  if (['POST', 'PUT'].indexOf(method) >= 0 && action.params) {
     if (type === 'upload') {
       body = action.params
     }
@@ -61,11 +63,14 @@ const createFetchRequest = (action) => {
     ? `?${getEncodedUrlParams(action.params)}`
     : ''
 
+  const TOKEN_KEY = 'Authorization'
+
   const fetchRequest = fetch(`${getApiUrl(url)}${queryParams}`, {
     method,
     headers: {
       ...(contentType && { 'Content-Type': contentType }),
-      ...headers
+      ...headers,
+      [TOKEN_KEY]: token
     },
     body
   })

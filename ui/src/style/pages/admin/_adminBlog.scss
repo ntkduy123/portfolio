@@ -1,0 +1,29 @@
+table.admin-blog {
+  width: 100%;
+}
+
+.admin-blog th, .admin-blog td {
+  border: 1px solid #eee;
+  padding: 1em;
+}
+
+.admin-blog .fa-edit {
+  cursor: pointer;
+  margin: 5px;
+  font-size: 15px;
+  color: #666;
+}
+
+.admin-blog .fa-edit:hover {
+  color: green;
+}
+
+.admin-blog .fa-remove {
+  cursor: pointer;
+  margin: 5px;
+  font-size: 18px;
+}
+
+.admin-blog .fa-remove:hover {
+  color: red;
+}

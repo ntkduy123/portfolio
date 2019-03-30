@@ -1,27 +1,21 @@
+import { withSessionReducer } from '../helpers/reducer'
 import {
   GET_POST,
   GET_POST_OK,
   GET_POST_ERROR,
   GET_POST_CATEGORY,
   GET_POST_CATEGORY_OK,
-  GET_POST_CATEGORY_ERROR,
-  ADD_POST,
-  ADD_POST_OK,
-  ADD_POST_ERROR,
-  UPLOAD_POST_IMAGE,
-  UPLOAD_POST_IMAGE_OK,
-  UPLOAD_POST_IMAGE_ERROR
+  GET_POST_CATEGORY_ERROR
 } from '../actions/types'
 
 const INITIAL_STATE = {
-  posts: [],
-  categories: [],
+  postList: [],
+  postCategoryList: [],
   loading: false,
-  error: false,
-  postId: undefined
+  error: false
 }
 
-export default (state = INITIAL_STATE, payload) => {
+const reducer = (state = INITIAL_STATE, payload) => {
   switch (payload.type) {
     case GET_POST:
       return {
@@ -31,7 +25,7 @@ export default (state = INITIAL_STATE, payload) => {
     case GET_POST_OK:
       return {
         ...state,
-        posts: payload.data,
+        postList: payload.data,
         loading: false
       }
     case GET_POST_ERROR:
@@ -48,7 +42,7 @@ export default (state = INITIAL_STATE, payload) => {
     case GET_POST_CATEGORY_OK:
       return {
         ...state,
-        categories: payload.data,
+        postCategoryList: payload.data,
         loading: false
       }
     case GET_POST_CATEGORY_ERROR:
@@ -57,33 +51,9 @@ export default (state = INITIAL_STATE, payload) => {
         error: true,
         loading: false
       }
-    case ADD_POST:
-      return {
-        ...state,
-        loading: true
-      }
-    case ADD_POST_OK:
-      return {
-        ...state,
-        loading: false,
-        postId: payload.data.postId
-      }
-    case ADD_POST_ERROR:
-      return {
-        ...state,
-        error: true,
-        loading: false
-      }
-    case UPLOAD_POST_IMAGE:
-      return state
-    case UPLOAD_POST_IMAGE_OK:
-      return state
-    case UPLOAD_POST_IMAGE_ERROR:
-      return {
-        ...state,
-        error: true
-      }
     default:
       return state
   }
 }
+
+export default withSessionReducer(reducer, INITIAL_STATE)

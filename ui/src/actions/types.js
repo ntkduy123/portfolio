@@ -21,3 +21,11 @@ export const ADD_POST_ERROR = 'ADD_POST_ERROR'
 export const UPLOAD_POST_IMAGE = 'UPLOAD_POST_IMAGE'
 export const UPLOAD_POST_IMAGE_OK = 'UPLOAD_POST_IMAGE_OK'
 export const UPLOAD_POST_IMAGE_ERROR = 'UPLOAD_POST_IMAGE_ERROR'
+
+export const LOGIN = 'LOGIN'
+export const LOGIN_OK = 'LOGIN_OK'
+export const LOGIN_ERROR = 'LOGIN_ERROR'
+
+export const LOGOUT = 'LOGOUT'
+
+export const RESET_FORM = 'RESET_FORM'

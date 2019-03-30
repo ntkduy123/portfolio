@@ -9,3 +9,38 @@
 .form-group .rdw-editor-wrapper {
   box-sizing: border-box;
 }
+
+.form-group .rdw-editor-main {
+  height: 50em;
+  overflow-y: hidden;
+}
+
+.form-group .dropzone {
+  text-align: center;
+  width: 13em;
+  height: 13em;
+  line-height: 12em;
+  border: 2px dashed;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.form-group .thumbs-container {
+  display: inline-block;
+}
+
+.form-group .thumbs-container img {
+  width: 80%;
+  height: 80%;
+}
+
+.form-group .thumbs-container .image-box {
+  border: 2px dashed;
+  width: 13em;
+  height: 13em;
+  margin-right: 2em;
+  text-align: center;
+  line-height: 11.5em;
+  display: inline-block;
+}

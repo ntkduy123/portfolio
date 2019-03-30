@@ -1,8 +1,6 @@
 import {
-  ADD_POST,
   GET_POST,
-  GET_POST_CATEGORY,
-  UPLOAD_POST_IMAGE
+  GET_POST_CATEGORY
 } from './types'
 
 export const getAllPost = () => ({
@@ -13,29 +11,10 @@ export const getAllPost = () => ({
   }
 })
 
-export const getAllCategory = () => ({
+export const getAllPostCategory = () => ({
   type: GET_POST_CATEGORY,
   request: {
     url: 'api/post/category',
     method: 'GET'
   }
-})
-
-export const addPost = post => ({
-  type: ADD_POST,
-  request: {
-    url: 'api/post',
-    method: 'POST'
-  },
-  params: post
-})
-
-export const uploadPostImage = data => ({
-  type: UPLOAD_POST_IMAGE,
-  request: {
-    url: 'api/post/upload',
-    method: 'POST',
-    type: 'upload'
-  },
-  params: data
 })
